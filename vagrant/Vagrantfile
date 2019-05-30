@@ -11,8 +11,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.hostmanager.include_offline = true
 
     config.vm.provider "virtualbox" do |v|
-      v.memory = 2500
-      v.cpus = 4
+      v.memory = 1500
+      v.cpus = 2
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
     end
 
