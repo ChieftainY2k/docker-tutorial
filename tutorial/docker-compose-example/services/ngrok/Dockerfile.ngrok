@@ -1,0 +1,7 @@
+FROM wernight/ngrok
+
+USER root
+ADD ./showtunnels.sh /showtunnels.sh
+RUN chmod a+x /showtunnels.sh
+
+USER ngrok

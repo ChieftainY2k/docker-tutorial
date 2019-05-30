@@ -1,0 +1,78 @@
+version: '3'
+
+services:
+
+  # IMBO API Application
+  imboapi:
+    build:
+      context: services/imboapi
+      dockerfile: Dockerfile.imboapi
+    volumes:
+      -  ${SYMFONY_APP_PATH}:/code/
+    environment:
+      - VIRTUAL_HOST=api.imbo.local
+      - APP_ENV=dev
+      - COMPOSER_CACHE_DIR=/tmp
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - SYMFONY_CACHE_DIR=${SYMFONY_CACHE_DIR}
+      - XDEBUG_CONFIG=${XDEBUG_CONFIG}
+    depends_on:
+      - nginx
+      - mysql
+      - redis
+      - phpmyadmin
+      - ngrok
+
+  # NGINX proxy for virtual hosts inside docker
+  nginx:
+    build:
+      context: services/nginx
+      dockerfile: Dockerfile.nginx
+    ports:
+      - ${NGINX_PORT_TO_EXPOSE}:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  # MySQL server
+  mysql:
+    build:
+      context: services/mysql
+      dockerfile: Dockerfile.mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=imbo
+      - MYSQL_PASSWORD=imbo
+      - MYSQL_DATABASE=imbo
+    volumes:
+      - mysql_volume:/var/lib/mysql
+    ports:
+      - ${MYSQL_PORT_TO_EXPOSE}:3306
+
+  # Redis server
+  redis:
+    image: redis
+    command: "redis-server --appendonly yes"
+    volumes:
+      - redis_volume:/data
+
+  # phpMyAdmin
+  phpmyadmin:
+    build:
+      context: services/phpmyadmin
+      dockerfile: Dockerfile.phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - VIRTUAL_HOST=phpmyadmin.imbo.local
+
+  # ngrok public->local tunnel (see https://github.com/wernight/docker-ngrok)
+  ngrok:
+    build:
+      context: services/ngrok
+      dockerfile: Dockerfile.ngrok
+    environment:
+      - NGROK_REGION=eu
+    command: ngrok http imboapi:80
+
+volumes:
+  mysql_volume:
+  redis_volume:
