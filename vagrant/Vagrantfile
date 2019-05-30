@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         node.vm.hostname = "dockertutorial.local"
 
-        node.vm.synced_folder "../", "/mydocker"
+        node.vm.synced_folder "../tutorial", "/dockertutorial"
 
         node.vm.provision :shell, path: "provision.sh"
         node.vm.provision :shell, path: "up.sh", run: "always"
