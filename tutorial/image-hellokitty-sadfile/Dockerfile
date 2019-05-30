@@ -1,3 +1,4 @@
 FROM kittyimagewithfile
-ADD ./sadhello.txt /hello.txt
+
+COPY ./sadhello.txt /hello.txt
 
