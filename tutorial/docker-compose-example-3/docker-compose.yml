@@ -20,15 +20,15 @@ services:
     environment:
       - VIRTUAL_HOST=apifoo.dockertutorial.local
 
-#  # API BAR
-#  apibar:
-#    build:
-#      context: services/apibar
-#      dockerfile: Dockerfile.apibar
-#    volumes:
-#      - ./services/apibar/code:/code
-#    environment:
-#      - VIRTUAL_HOST=apibar.dockertutorial.local
+  # API BAR
+  apibar:
+    build:
+      context: services/apibar
+      dockerfile: Dockerfile.apibar
+    volumes:
+      - ./services/apibar/code:/api
+    environment:
+      - VIRTUAL_HOST=apibar.dockertutorial.local
 
 volumes:
   mysql_volume:

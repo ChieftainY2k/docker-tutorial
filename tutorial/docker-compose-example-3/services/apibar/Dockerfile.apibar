@@ -1,0 +1,15 @@
+FROM ubuntu
+
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get update \
+    && apt-get -y upgrade \
+    && apt-get install -y git mc joe multitail wget curl php-cli
+
+# Add startup script
+COPY ./runner.sh /runner.sh
+RUN chmod a+x /runner.sh
+CMD /runner.sh
+
+# Expose API on port 80
+EXPOSE 80
