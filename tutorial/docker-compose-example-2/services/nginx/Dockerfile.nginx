@@ -1,5 +1,0 @@
-FROM jwilder/nginx-proxy
-
-#override standard nginx config
-COPY nginx.conf /etc/nginx/nginx.conf
-

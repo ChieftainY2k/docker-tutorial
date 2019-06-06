@@ -6,12 +6,12 @@ services:
   mysql:
     image: percona
     environment:
-      - MYSQL_ROOT_PASSWORD=${ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=tutorial
       - MYSQL_PASSWORD=tutorial
       - MYSQL_DATABASE=tutorial
     volumes:
-      - mysql_volume:${MYSQL_DATA_DIR}
+      - mysql_volume:/var/lib/mysql
 
   # phpMyAdmin
   phpmyadmin:

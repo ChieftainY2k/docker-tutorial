@@ -24,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.boot_timeout = 1800
 
         node.vm.network "forwarded_port", guest: 80, host: 80 #http
-        node.vm.network "forwarded_port", guest: 443, host: 443 #https
+        node.vm.network "forwarded_port", guest: 3306, host: 3306 #mysql
 
         node.vm.hostname = "dockertutorial.local"
 
@@ -34,7 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.provision :shell, path: "up.sh", run: "always"
 
         node.hostmanager.aliases = [
-            "dockertutorial.local"
+            "dockertutorial.local",
+            "phpmyadmin.dockertutorial.local"
         ]
 
 
