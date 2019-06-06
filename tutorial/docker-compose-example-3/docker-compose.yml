@@ -30,6 +30,3 @@ services:
     environment:
       - VIRTUAL_HOST=apibar.dockertutorial.local
 
-volumes:
-  mysql_volume:
-  redis_volume:
