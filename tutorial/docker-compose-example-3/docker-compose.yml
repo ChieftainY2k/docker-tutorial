@@ -12,29 +12,23 @@ services:
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
-  # MySQL server
-  mysql:
+  # API FOO
+  apifoo:
     build:
-      context: services/mysql
-      dockerfile: Dockerfile.mysql
+      context: services/apifoo
+      dockerfile: Dockerfile.apifoo
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_USER=imbo
-      - MYSQL_PASSWORD=imbo
-      - MYSQL_DATABASE=imbo
-    volumes:
-      - mysql_volume:/var/lib/mysql
-    ports:
-      - ${MYSQL_PORT_TO_EXPOSE}:3306
+      - VIRTUAL_HOST=apifoo.dockertutorial.local
 
-  # phpMyAdmin
-  phpmyadmin:
-    build:
-      context: services/phpmyadmin
-      dockerfile: Dockerfile.phpmyadmin
-    environment:
-      - PMA_ARBITRARY=1
-      - VIRTUAL_HOST=phpmyadmin.local
+#  # API BAR
+#  apibar:
+#    build:
+#      context: services/apibar
+#      dockerfile: Dockerfile.apibar
+#    volumes:
+#      - ./services/apibar/code:/code
+#    environment:
+#      - VIRTUAL_HOST=apibar.dockertutorial.local
 
 volumes:
   mysql_volume:

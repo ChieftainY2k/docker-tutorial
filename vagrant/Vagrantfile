@@ -35,7 +35,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
         node.hostmanager.aliases = [
             "dockertutorial.local",
-            "phpmyadmin.dockertutorial.local"
+            "phpmyadmin.dockertutorial.local",
+            "apifoo.dockertutorial.local",
+            "apibar.dockertutorial.local",
         ]
 
 
