@@ -1,5 +1,4 @@
 vagrant/.vagrant/
 vagrant/*.log
 *~
-.env
 id_rsa.pub
