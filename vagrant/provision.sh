@@ -20,10 +20,6 @@ check_errors()
     fi
 }
 
-# update DNS
-#echo "nameserver 1.1.1.1" > /etc/resolv.conf
-#echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-
 # update system libs
 sudo apt-get -y update
 check_errors $?
@@ -38,28 +34,11 @@ check_errors $?
 sudo apt-get install -y mc joe git multitail screen nmap htop iotop jnettop elinks pydf zip docker-compose
 check_errors $?
 
-#curl https://get.docker.com/ | sh
-#check_errors $?
-
-sudo docker run hello-world
+sudo docker run --rm hello-world
 check_errors $?
 
 sudo usermod -aG docker vagrant
 check_errors $?
-
-##Update docker-compose to the newest version, see https://github.com/docker/for-linux/issues/563
-#sudo apt-get -y remove docker-compose golang-docker-credential-helpers
-#check_errors $?
-##VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*\d')
-#VERSION="1.28.6"
-#DESTINATION=/usr/local/bin/docker-compose
-#sudo curl -L https://github.com/docker/compose/releases/download/${VERSION}/docker-compose-$(uname -s)-$(uname -m) -o $DESTINATION
-#check_errors $?
-#sudo chmod 755 $DESTINATION
-#check_errors $?
-
-#sudo pip install docker-compose
-#check_errors $?
 
 docker-compose version
 check_errors $?
@@ -67,13 +46,7 @@ check_errors $?
 sudo usermod -aG docker ${USER}
 check_errors $?
 
-#sudo mkdir /tmp/composer-cache
-#check_errors $?
-#sudo chmod -R a+rwxX /tmp/composer-cache
-#check_errors $?
-
 # Docker environment config
-#echo "export DOCKER_ENV=local" >> /home/vagrant/.bashrc
 echo "export DOCKER_BUILDKIT=1" >> /home/vagrant/.bashrc
 echo "export PROMPT_COMMAND=\"history -a; history -r\"" >> /home/vagrant/.bashrc
 check_errors $?
