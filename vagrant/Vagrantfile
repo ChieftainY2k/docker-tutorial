@@ -7,6 +7,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.hostmanager.enabled = true
     config.hostmanager.manage_host = true
+    config.hostmanager.manage_guest = true
     config.hostmanager.ignore_private_ip = false
     config.hostmanager.include_offline = true
 
@@ -23,7 +24,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.vm.box = "ubuntu/focal64"
         node.vm.boot_timeout = 1800
 
-        node.vm.network "forwarded_port", guest: 80, host: 80 #http
+        node.vm.network "forwarded_port", guest: 80, host: 8080 #http
         node.vm.network "forwarded_port", guest: 3306, host: 3306 #mysql
 
         node.vm.hostname = "dockertutorial.local"
@@ -36,8 +37,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         node.hostmanager.aliases = [
             "dockertutorial.local",
             "phpmyadmin.dockertutorial.local",
+            "nginx.dockertutorial.local",
             "apifoo.dockertutorial.local",
             "apibar.dockertutorial.local",
+            "myapp.dockertutorial.local",
         ]
 
 

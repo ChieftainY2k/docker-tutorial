@@ -12,10 +12,9 @@ vagrant plugin install vagrant-vbguest
 vagrant plugin install vagrant-hostmanager
 `````
  
-Step 4: Launch Vagrant Box
+Step 4: Launch Vagrant Box and log into VM
 `````
 cd vagrant
-vagrant box update
 vagrant up 
 vagrant ssh
 `````
