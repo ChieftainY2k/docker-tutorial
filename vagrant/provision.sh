@@ -47,6 +47,6 @@ sudo usermod -aG docker ${USER}
 check_errors $?
 
 # Docker environment config
-echo "export DOCKER_BUILDKIT=1" >> /home/vagrant/.bashrc
+#echo "export DOCKER_BUILDKIT=1" >> /home/vagrant/.bashrc
 echo "export PROMPT_COMMAND=\"history -a; history -r\"" >> /home/vagrant/.bashrc
 check_errors $?
