@@ -20,4 +20,6 @@ vagrant ssh
 Step 5: Once you're inside the VM
 ```shell
 docker run --rm hello-world
+cd /dockertutorial 
+ls
 ```
