@@ -1,7 +1,5 @@
 ## VM Installation
 
-**Setting up local vagrant environment**
-
 Step 1: Install Virtualbox (https://www.virtualbox.org/)
 
 Step 2: Install vagrant (https://www.vagrantup.com/)
