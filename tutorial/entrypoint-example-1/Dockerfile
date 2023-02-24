@@ -3,4 +3,4 @@ ADD ./entrypoint.sh /entrypoint.sh
 RUN chmod u+x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD "date"
+CMD ["ls","-la"]
