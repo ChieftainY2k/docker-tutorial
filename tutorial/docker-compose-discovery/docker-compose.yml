@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  backend:
+    image: alpine
+    command:
+      - sleep
+      - infinity
+    depends_on:
+      - database
+      - cache
+
+  api:
+    image: alpine
+    command:
+      - sleep
+      - infinity
+    links:
+      - database:mystorage
+
+  database:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=database
+
+  cache:
+    image: memcached
